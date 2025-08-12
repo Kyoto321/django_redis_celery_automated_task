@@ -27,10 +27,6 @@ To run celery worker
 
 To shut downredis server
     redis-cli shutdown
-        
-
-celery redis email tasks
-    https://www.youtube.com/playlist?list=PL5E1F5cTSTtRHN1WynTlFmr9ozlfZEUNI
 
 
 To run celery with flower - on two different terminals
