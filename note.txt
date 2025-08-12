@@ -1,0 +1,55 @@
+Django, Celery, Redis(message broker), Flower
+    run and record sheduled, automatic background tasks (eg email)
+    send newsletters
+
+
+
+To check if redis is running
+    brew services info redis
+
+To run redis server
+    redis server 
+
+    with brew
+        brew redis start server    
+
+To run celery worker
+    celery -A a_core worker -E -l info
+
+    low uploads 
+        celery -A a_core worker -P solo
+
+    high uploads
+        celery -A a_core worker -P threads
+
+    concurrents tasks
+        celery -A a_core worker -P gevent
+
+To shut downredis server
+    redis-cli shutdown
+        
+
+celery redis email tasks
+    https://www.youtube.com/playlist?list=PL5E1F5cTSTtRHN1WynTlFmr9ozlfZEUNI
+
+
+To run celery with flower - on two different terminals
+    run celery 
+        celery -A a_core worker --loglevel=info
+
+    run flower
+        celery -A a_core flower --loglevel=info
+
+        with user-auth
+          celery -A a_core flower --loglevel=info --basic_auth=admin:flowe123
+
+run migrations after installing 
+    'django_celery_results',
+        to keep track of tasks
+
+    'django_celery_beat'
+        to run and keep track scheduled/automated tasks for newsletters
+
+        cmd to run celery beat
+            celery -A a_core beat -l info --scheduler django_celery_beat.schedulers:DatabaseScheduler
+            
